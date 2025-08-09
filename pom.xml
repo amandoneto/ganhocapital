@@ -26,6 +26,25 @@
 	    <version>5.13.3</version>
 	    <scope>test</scope>
 	</dependency>
+
+    <dependency>
+      <groupId>org.junit.platform</groupId>
+      <artifactId>junit-platform-suite</artifactId>
+      <version>1.13.4</version><scope>test</scope>
+    </dependency>
+
+    <dependency>
+        <groupId>io.cucumber</groupId>
+        <artifactId>cucumber-java</artifactId>
+        <version>7.27.0</version>
+    </dependency>
+
+    <dependency>
+        <groupId>io.cucumber</groupId>
+        <artifactId>cucumber-junit-platform-engine</artifactId>
+        <scope>test</scope>
+        <version>7.27.0</version>
+    </dependency>
     
     <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
 	<dependency>
@@ -72,6 +91,21 @@
 		        </execution>
 		    </executions>
 		</plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.3.0</version>
+            <configuration>
+                <properties>
+                    <!-- Work around. Surefire does not include enough
+                    information to disambiguate between different
+                    examples and scenarios. -->
+                    <configurationParameters>
+                        cucumber.junit-platform.naming-strategy=surefire
+                    </configurationParameters>
+                </properties>
+            </configuration>
+        </plugin>
 	  </plugins>
   	
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->

@@ -94,7 +94,7 @@ public class JsonConverter implements JConverter{
 	@Override
     public List<String> convertToJsonList(String input){
     	List<String> extractedArrays = new ArrayList<>();
-    	Pattern pattern = Pattern.compile("\\[.*?\\]");
+    	Pattern pattern = Pattern.compile("\\[.*?\\]", Pattern.DOTALL);
         Matcher matcher = pattern.matcher(input);
 
         while (matcher.find()) {
